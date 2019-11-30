@@ -1,0 +1,17 @@
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4" id="searchtext">Find Food</h1>
+
+    <div class="input-group mb-3 lead">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"><i class="material-icons">
+            find_in_page
+          </i></span>
+      </div>
+      <input type="text" id="searchInput" name="searchInput" class="form-control" placeholder="Search food" aria-label="search" value=""
+        aria-describedby="basic-addon1" (input)="search($event.target.value)" >
+    </div>
+  </div>
+</div>
+<app-food-menu></app-food-menu>

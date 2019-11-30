@@ -1,0 +1,64 @@
+<img class="card-img-top" src="{{foodItem.imageUrl}}}" />
+<div class="card-body">
+  <div class="row">
+    <div class="col-auto">
+      <h5 class="card-title">{{foodItem.name}}</h5>
+    </div>
+
+    <div class="col text-right">
+      <h6 class="card-subtitle mt-1" id="price">{{foodItem.price | currency:'INR'}}</h6>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <span *ngIf="isAdmin && foodItem.active" class="badge badge-success">Active</span>
+      <span *ngIf="isAdmin && !foodItem.active" class="badge badge-danger">Inactive</span>
+      <p class="card-subtitle text-muted" id="category">{{foodItem.category}}</p>
+    </div>
+
+    <div *ngIf="foodItem.freeDelivery" class="col card-subtitle text-right" id="freedelivery">
+      <i class="material-icons delivery">
+        local_shipping
+      </i>
+      <span class="badge badge-info ">FREE</span>
+
+    </div>
+
+  </div>
+  <div class="row" *ngIf="this.foodService.addedToCart && this.foodService.cartAddedId==foodItem.id">
+    <div class="alert alert-success alert-dismissible fade show alert-msg" role="alert">
+      Item added to cart successfully.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+  </div>
+  <div class="row" *ngIf="!isAdmin">
+    <div class="col mr-auto"></div>
+    <div class="col ml-auto mr-0 py-0 px-15 text-right">
+      <button class="btn btn-primary active" aria-pressed="true" id="button"
+        (click)="addToCartClicked.emit(foodItem.id)">
+        <i class="material-icons" id="addtocart">
+          add_shopping_cart
+        </i> Add to Cart</button>
+    </div>
+
+  </div>
+  <div class="row" *ngIf="isAdmin">
+    <div class="col mr-auto text-left">
+      <i class="material-icons" id="launchicon">
+        access_time
+      </i>
+      <p class="card-subtitle text-muted" id="launch">Launch</p>
+      <p class="card-subtitle text-muted" id="date">{{foodItem.dateOfLaunch | date:'dd/MM/yyyy'}}</p>
+
+    </div>
+    <div class="col ml-auto mr-0 py-0 px-15 text-right">
+      <button [routerLink]="['/edit',foodItem.id]" role="button" class="btn btn-primary active" aria-pressed="true"
+        id="button">
+        <i class="material-icons" id="edit">
+          edit
+        </i> Edit </button>
+    </div>
+  </div>

@@ -1,0 +1,47 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<nav class="navbar navbar-expand-sm navbar-dark">
+  <i class="material-icons mr-3" style="color:white; font-size: 1.75em">
+    local_dining
+  </i>
+  <a class="navbar-brand" href="#">truYum</a>
+  <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+    aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="material-icons">
+      menu
+    </i>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavId">
+    <ul class="navbar-nav mr-auto"></ul>
+    <ul class="navbar-nav mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/">Movies </a>
+      </li>
+      <li class="nav-item active" *ngIf="loggedIn()">
+        <a class="nav-link" href="#"> <i class="material-icons vertical">
+            person
+          </i> {{this.authService.name}}</a>
+      </li>
+      <li class="nav-item active" *ngIf="loggedIn() && !this.foodService.isAdmin">
+        <a class="nav-link" routerLink="/cart">Cart </a>
+      </li>
+      <li class="nav-item active" *ngIf="loggedIn()">
+        <a class="nav-link" (click)="logout()" routerLink="/">Logout</a>
+      </li>
+
+
+      <li class="nav-item active" *ngIf="!loggedIn()">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+      <li class="nav-item active" *ngIf="!loggedIn()">
+        <a class="nav-link" routerLink="/signup">Sign Up</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+
+<footer>
+    <div class="footer-copyright text-left py-3 pl-6">
+        Copyright 2019
+    </div>
+</footer>

@@ -1,0 +1,10 @@
+<div class="container-fluid" id="menu_items_container">
+  <div class="row">
+    <div class="card-container col-sm-12 col-md-6 col-lg-3 col-xl-3 p-2" *ngFor="let foodItem of foodItemsList">
+      <div class="card" >
+        <app-food-item-info [foodItem]="foodItem" (addToCartClicked)="this.foodService.addToCart($event)">
+        </app-food-item-info>
+      </div>
+    </div>
+  </div>
+</div>

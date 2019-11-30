@@ -1,0 +1,103 @@
+<div class="container-fluid">
+
+  <form id="edit_menu_item_form" class="needs-validation" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <h3>Edit Menu Item</h3>
+    <div class="form-group">
+      <label for="itemName">Item Name</label>
+      <input type="text" class="form-control" id="itemName" placeholder="" formControlName="itemName"
+        [ngClass]="{ 'is-invalid': submitted && f.itemName.errors }">
+      <div *ngIf="submitted && f.itemName.errors" class="invalid-feedback">
+        <div *ngIf="f.itemName.errors.required">Item Name is required</div>
+        <div *ngIf="f.itemName.errors.maxlength">Item Name cannot exceed 200 characters</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="imageUrl">Image URL</label>
+      <input type="text" class="form-control" id="imageUrl" placeholder="" formControlName="imageUrl"
+        [ngClass]="{ 'is-invalid': submitted && f.imageUrl.errors }">
+      <div *ngIf="submitted && f.imageUrl.errors" class="invalid-feedback">
+        <div *ngIf="f.imageUrl.errors.required">Image URL is required</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-lg-3">
+        <label for="inputPrice">Price</label>
+        <input type="number" class="form-control" id="inputPrice" formControlName="price"
+          [ngClass]="{ 'is-invalid': submitted && f.price.errors }">
+        <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+          <div *ngIf="f.price.errors.required">Price is required</div>
+          <div *ngIf="f.price.errors.pattern">Price can only contain numbers</div>
+        </div>
+      </div>
+      <div class="form-group col-lg-3">
+        <label for="dateOfLaunch">Date of Launch</label>
+        <div class="input-group">
+          <input type="date" class="form-control" id="dateOfLaunch" formControlName="dateOfLaunch"
+            [ngClass]="{ 'is-invalid': submitted && f.dateOfLaunch.errors }" 
+            >
+          <div class="input-group-append">
+            <span class="input-group-text"><i class="material-icons">
+                event
+              </i>
+            </span>
+          </div>
+
+        </div>
+        <div *ngIf="submitted && f.dateOfLaunch.errors" class="invalid-feedback">
+          <div *ngIf="f.dateOfLaunch.errors.required">Date of Launch is required</div>
+        </div>
+      </div>
+      <div class="form-group col-lg-3">
+        <label for="inputCategory">Category</label>
+
+        <select *ngIf="foodItem.category=='Main Course'" id="inputCategory" class="form-control"
+          formControlName="category">
+          <option selected>Main Course</option>
+          <option>Starters</option>
+          <option>Dessert</option>
+        </select>
+        <select *ngIf="foodItem.category=='Starters'" id="inputCategory" class="form-control"
+          formControlName="category">
+          <option>Main Course</option>
+          <option selected>Starters</option>
+          <option>Dessert</option>
+        </select>
+        <select *ngIf="foodItem.category=='Dessert'" id="inputCategory" class="form-control" formControlName="category">
+          <option>Main Course</option>
+          <option>Starters</option>
+          <option selected>Dessert</option>
+        </select>
+      </div>
+      <div class="form group col-lg-3">
+        <div><label for="activeRadio">Active</label></div>
+
+        <div class="form-check form-check-inline" id="activeRadio">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="active" id="active" [value]="foodItem.active"
+              formControlName="active">
+            Yes
+          </label>
+        </div>
+        <div class="form-check form-check-inline" id="activeRadio">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="active" id="active" [value]="!foodItem.active"
+              formControlName="active">
+            No
+          </label>
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="freeDelvieryCheck" formControlName="freeDelivery"
+          [value]="foodItem.foodDelivery">
+        <label class="form-check-label" for="freeDelvieryCheck">
+          Free Delivery
+        </label>
+      </div>
+    </div>
+    <button type="submit" id="button" class="btn btn-primary">Save</button>
+  </form>
+</div>

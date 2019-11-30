@@ -1,0 +1,43 @@
+
+<div class="container mx-auto">
+  <div class="card my-4 mx-auto" id="login_card">
+      <div class="card-body">
+          <h3>Login</h3>
+          <div class="alert alert-info" *ngIf="this.foodService.clickedOnAdd">Please login before adding an item to cart.</div>
+          <div class="alert alert-danger"
+            *ngIf="!validCredentials">Invalid Username / Password
+          </div>
+          <form id="signup_form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" id="username" formControlName="username" placeholder="Enter Username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
+                  <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">User Name is required</div>
+                    <div *ngIf="f.username.errors.minlength">User Name should be at least 4 characters</div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" formControlName="password" id="password" placeholder="Enter Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password should be at least 8 characters</div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-auto mr-auto">
+                          <button type="submit" id="button" class="btn btn-primary mt-0">
+                                  Login
+                              </button>
+                  </div>
+                  <div class="col text-right">
+                         New Here? <a routerLink="/signup">Signup</a>
+                  </div>
+              </div>
+            
+          </form>
+      </div>
+  </div>
+</div>
